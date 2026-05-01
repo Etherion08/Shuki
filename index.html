@@ -204,43 +204,36 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+
+        <!-- Background -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-earth-900/50 via-earth-900/30 to-earth-50 z-10"></div>
-            <img src="WhatsApp Image 2026-04-30 at 11.13.16.jpeg" alt="Medical background" class="w-full h-full object-cover">
-        </div>
-        
-        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
-            <div class="mb-6 inline-block animate-float">
-                <svg class="w-16 h-16 text-rose-300 mx-auto opacity-90" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L9 7h6l-3-5zm0 20l3-5H9l3 5zm-7-7l5 3V9l-5 3zm14 0l-5 3V9l5 3z"/>
-                </svg>
-            </div>
-            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 text-shadow leading-tight">
-                Shuki<br>
-                <span class="italic text-rose-300">Ayurveda</span>
-            </h1>
-            <p class="text-earth-100 text-lg md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed text-shadow">
-                Compassionate Ayurvedic care for women, led by <strong class="text-white">Dr. Pallavi</strong>
-            </p>
-            <p class="text-earth-200 text-base max-w-xl mx-auto mb-10 font-light leading-relaxed text-shadow">
-                Specialized in Piles, Fissure, Fistula & Cyst treatment for women through authentic Ayurvedic principles
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#booking" class="bg-rose-600 text-white px-8 py-4 rounded-full hover:bg-rose-700 transition-all transform hover:scale-105 text-sm font-semibold tracking-wide shadow-xl shadow-rose-900/30">
-                    Book Consultation
-                </a>
-                <a href="#piles" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all text-sm font-semibold tracking-wide">
-                    Our Treatments
-                </a>
-            </div>
+            <img src="WhatsApp Image 2026-04-30 at 11.13.16.jpeg"
+                 class="absolute inset-0 w-full h-full object-cover object-center">
+    
+            <div class="absolute inset-0 bg-gradient-to-b from-earth-900/60 via-earth-900/40 to-earth-50"></div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-            <a href="#about" class="text-white/70 hover:text-white transition-colors">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </a>
+        <!-- Content -->
+        <div class="relative z-20 text-center px-5 max-w-5xl mx-auto">
+            <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 leading-tight">
+                Shuki <br>
+                <span class="italic text-rose-300">Ayurveda</span>
+            </h1>
+
+            <p class="text-earth-100 text-lg mb-8 max-w-xl mx-auto">
+            Compassionate Ayurvedic care for women by <strong>Dr. Pallavi</strong>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#booking" class="bg-rose-600 text-white px-8 py-4 rounded-full hover:bg-rose-700 transition">
+                    Book Consultation
+                </a>
+                <a href="#piles" class="border border-white text-white px-8 py-4 rounded-full hover:bg-white/20 transition">
+                Treatments
+                </a>
+            </div>
         </div>
     </section>
 
@@ -267,83 +260,38 @@
         </div>
     </div>
 
-    <!-- About Section -->
+    <!-- ABOUT SECTION -->
     <section id="about" class="py-24 bg-earth-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="scroll-reveal relative">
-                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-rose-400/30"></div>
-                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-rose-400/30"></div>
-                    <img src="Dr Pallavi.jpeg" alt="Dr Pallavi" class="rounded-2xl shadow-2xl w-full object-cover h-[600px]">
-                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block">
-                        <div class="flex items-center gap-3 mb-2">
-                            <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user-md text-rose-600"></i>
-                            </div>
-                            <div>
-                                <p class="font-serif text-lg text-earth-800">Dr. Pallavi</p>
-                                <p class="text-sm text-earth-500">B.A.M.S, MS (Ayurveda)</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <!-- IMAGE -->
+                <div class="relative flex justify-center">
+                    <img src="Dr Pallavi.jpeg"
+                         class="w-full h-[420px] sm:h-[500px] lg:h-[600px] object-cover object-top rounded-2xl shadow-2xl">
+
+                    <!-- decorative border -->
+                    <div class="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-20 sm:w-24 h-20 sm:h-24 border-t-2 border-l-2 border-rose-400/30"></div>
+                    <div class="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-20 sm:w-24 h-20 sm:h-24 border-b-2 border-r-2 border-rose-400/30"></div>
                 </div>
-                
-                <div class="scroll-reveal">
-                    <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Meet Dr. Pallavi</p>
-                    <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-6 leading-tight">
-                        Trusted Care for<br>
-                        <span class="italic text-earth-600">Women's Health</span>
+
+                <!-- TEXT -->
+                <div>
+                    <p class="text-rose-600 text-sm mb-4 uppercase tracking-widest">About</p>
+
+                    <h2 class="font-serif text-4xl md:text-5xl mb-6">
+                        Trusted Care for <span class="italic text-earth-600">Women</span>
                     </h2>
-                    <p class="text-earth-600 leading-relaxed mb-6 text-lg">
-                        Dr. Pallavi is a dedicated Ayurvedic practitioner with over 2 years of specialized experience 
-                        in treating women's health conditions. Her gentle, patient-centered approach has helped thousands 
-                        of women find relief from chronic conditions through natural, side-effect-free treatments.
+
+                    <p class="text-earth-600 mb-6 leading-relaxed">
+                            Dr. Pallavi specializes in Ayurvedic treatment for women’s anorectal conditions like piles, fissure, fistula, and cysts.
                     </p>
-                    <p class="text-earth-600 leading-relaxed mb-8">
-                        At Shuki Ayurveda, we understand that women's health requires a unique perspective. 
-                        Dr. Pallavi combines classical Ayurvedic wisdom with deep empathy to create treatment 
-                        plans that address not just symptoms, but the root cause of your condition.
+
+                    <p class="text-earth-600 leading-relaxed">
+                        Her approach focuses on root-cause healing using natural therapies, diet, and personalized care.
                     </p>
-                    
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-rose-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-earth-800 mb-1">Women-Centric Care</h4>
-                                <p class="text-sm text-earth-500">Specialized understanding</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-rose-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-earth-800 mb-1">100% Natural</h4>
-                                <p class="text-sm text-earth-500">Herbal formulations</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-rose-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-earth-800 mb-1">Private & Safe</h4>
-                                <p class="text-sm text-earth-500">Confidential consultations</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-rose-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-earth-800 mb-1">Root Cause Treatment</h4>
-                                <p class="text-sm text-earth-500">Not just symptom relief</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -746,138 +694,59 @@
     </section>
 
     <!-- Booking Section -->
-    <section id="booking" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="booking" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
             <div class="grid lg:grid-cols-5 gap-12">
-                <div class="lg:col-span-3 scroll-reveal">
-                    <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Appointments</p>
-                    <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-6">
-                        Consult <span class="italic text-earth-600">Dr. Pallavi</span>
-                    </h2>
-                    <p class="text-earth-600 mb-8">Schedule your private consultation. All appointments are handled with complete confidentiality and care.</p>
+
+                <!-- FORM -->
+                <div class="lg:col-span-3">
+                    <h2 class="font-serif text-4xl mb-6">Book Appointment</h2>
 
                     <form action="https://formspree.io/f/xojrqbrq" method="POST" class="space-y-6">
 
                         <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium text-earth-700 mb-2">Full Name</label>
-                            <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50" placeholder="Your name">
-                    </div>
-                    <div>
-                            <label class="block text-sm font-medium text-earth-700 mb-2">Email</label>
-                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50" placeholder="you@example.com">
-                    </div>
-                    </div>
+                            <input type="text" name="name" required placeholder="Full Name"
+                                   class="w-full px-4 py-3 border rounded-xl">
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                            <label class="block text-sm font-medium text-earth-700 mb-2">Phone</label>
-                            <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50" placeholder="+1 (555) 000-0000">
-                    </div>
-                    <div>
-                            <label class="block text-sm font-medium text-earth-700 mb-2">Concern</label>
-                            <select name="concern" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50 appearance-none cursor-pointer">
-                                <option value="">Select your concern</option>
-                                <option value="piles">Piles / Hemorrhoids</option>
-                                <option value="fissure">Anal Fissure</option>
-                                <option value="fistula">Fistula-in-Ano</option>
-                                <option value="cysts">Cysts</option>
-                                <option value="women-health">General Women's Health</option>
-                                <option value="digestive">Digestive Issues</option>
-                                <option value="other">Other Concern</option>
-                            </select>
-                    </div>
-                </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-earth-700 mb-2">Preferred Date</label>
-                        <input type="date" name="date" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50 cursor-pointer">
-                    </div>
-
-                        <!-- TIME SLOT -->
-                        <input type="hidden" name="time" id="selected-time" required>
-
-                    <div>
-                        <label class="block text-sm font-medium text-earth-700 mb-2">Symptoms / Notes</label>
-                        <textarea name="message" rows="3" class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50 resize-none" placeholder="Briefly describe your symptoms..."></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-rose-600 text-white py-4 rounded-xl hover:bg-rose-700 transition-all font-semibold text-lg">
-                        Request Appointment
-                    </button>
-
-                    
-                </form>
-            </div>
-
-                <div class="lg:col-span-2 scroll-reveal" style="transition-delay: 200ms">
-                    <div class="bg-earth-900 text-earth-100 rounded-3xl p-8 h-full relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-rose-800/30 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                        <div class="absolute bottom-0 left-0 w-48 h-48 bg-copper-600/20 rounded-full -ml-24 -mb-24 blur-2xl"></div>
-                        
-                        <div class="relative z-10">
-                            <h3 class="font-serif text-3xl text-white mb-2">Shuki Ayurveda</h3>
-                            <p class="text-rose-300 mb-8">Dr. Pallavi's Clinic</p>
-                            
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-map-marker-alt text-rose-400"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-white mb-1">Clinic Address</p>
-                                        <p class="text-earth-300 text-sm leading-relaxed">Opp of Ambabai Bhavani gudi, kusnoor road<br>Kalaburagi, Karnataka, 585105</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-clock text-rose-400"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-white mb-1">Consultation Hours</p>
-                                        <p class="text-earth-300 text-sm">Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: By Appointment</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-phone text-rose-400"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-white mb-1">Contact</p>
-                                        <p class="text-earth-300 text-sm">+91 6364772202<br>drpallavi@gmail.com</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-shield-alt text-rose-400"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-white mb-1">Privacy Assured</p>
-                                        <p class="text-earth-300 text-sm">All consultations are strictly confidential</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-10 pt-8 border-t border-white/10">
-                                <p class="text-sm text-earth-400 mb-4">Follow Dr. Pallavi</p>
-                                <div class="flex gap-3">
-                                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                                        <i class="fab fa-whatsapp"></i>
-                                    </a>
-                                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>
-                                </div>
-                            </div>
+                            <input type="email" name="email" required placeholder="Email"
+                                   class="w-full px-4 py-3 border rounded-xl">
                         </div>
-                    </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="tel" name="phone" required placeholder="Phone"
+                                   class="w-full px-4 py-3 border rounded-xl">
+    
+                            <select name="concern" required class="w-full px-4 py-3 border rounded-xl">
+                                <option value="">Select Concern</option>
+                                <option>Piles</option>
+                                <option>Fissure</option>
+                                <option>Fistula</option>
+                            </select>
+                        </div>
+
+                        <input type="date" name="date" required
+                               class="w-full px-4 py-3 border rounded-xl">
+
+                        <textarea name="message" rows="3" placeholder="Message"
+                                  class="w-full px-4 py-3 border rounded-xl"></textarea>
+
+                        <button type="submit"
+                                class="w-full bg-rose-600 text-white py-4 rounded-xl hover:bg-rose-700">
+                            Request Appointment
+                        </button>
+
+                    </form>
                 </div>
+
+                <!-- INFO -->
+                <div class="lg:col-span-2 bg-earth-900 text-white p-8 rounded-3xl">
+                    <h3 class="text-2xl mb-4">Clinic Info</h3>
+                    <p class="mb-2">Kalaburagi, Karnataka</p>
+                    <p class="mb-2">+91 6364772202</p>
+                    <p>Mon–Sat: 9AM–6PM</p>
+                </div>
+
             </div>
         </div>
     </section>
