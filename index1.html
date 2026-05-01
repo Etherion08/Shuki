@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuki Ayurveda - Dr. Pallavi's Clinic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        earth: {
+                            50: '#faf8f5',
+                            100: '#f0ebe3',
+                            200: '#e0d5c5',
+                            300: '#c9b89f',
+                            400: '#b09a7a',
+                            500: '#967d5e',
+                            600: '#7d6549',
+                            700: '#65503a',
+                            800: '#4f3e2f',
+                            900: '#3d3026',
+                        },
+                        sage: {
+                            50: '#f4f7f4',
+                            100: '#e3ebe3',
+                            200: '#c5d8c5',
+                            300: '#9ebf9e',
+                            400: '#7aa37a',
+                            500: '#5e875e',
+                            600: '#496d49',
+                            700: '#3a573a',
+                            800: '#2f452f',
+                            900: '#263626',
+                        },
+                        copper: {
+                            400: '#d4a574',
+                            500: '#c8956c',
+                            600: '#b8835a',
+                        },
+                        rose: {
+                            50: '#fdf2f2',
+                            100: '#fce7e7',
+                            200: '#f9d5d5',
+                            300: '#f4b5b5',
+                            400: '#ec8e8e',
+                            500: '#e06c6c',
+                            600: '#cd5252',
+                            700: '#ab4040',
+                            800: '#8e3838',
+                            900: '#763434',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(250, 248, 245, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .mandala-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23967d5e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+        .service-card:hover .service-overlay {
+            opacity: 1;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .time-slot {
+            transition: all 0.2s;
+        }
+        .time-slot:hover:not(.disabled) {
+            background-color: #5e875e;
+            color: white;
+            transform: scale(1.05);
+        }
+        .time-slot.selected {
+            background-color: #496d49;
+            color: white;
+        }
+        .time-slot.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .treatment-tab {
+            transition: all 0.3s ease;
+        }
+        .treatment-tab.active {
+            background-color: #cd5252;
+            color: white;
+            border-color: #cd5252;
+        }
+        .treatment-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .treatment-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf8f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c9b89f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b09a7a;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="font-sans text-earth-800 bg-earth-50 antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-10 h-10 text-rose-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C10.5 4 8 6 8 9c0 2.5 1.5 4.5 4 5.5V22h2v-7.5c2.5-1 4-3 4-5.5 0-3-2.5-5-4-7z"/>
+                        <circle cx="12" cy="9" r="2" fill="white"/>
+                    </svg>
+                    <div>
+                        <h1 class="font-serif text-2xl font-semibold text-earth-900 tracking-wide">Shuki</h1>
+                        <p class="text-xs text-earth-600 tracking-widest uppercase">Ayurveda</p>
+                        <p class="text-[10px] text-rose-600 tracking-wider uppercase font-medium mt-0.5">Ladies Piles Surgeon</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">Home</a>
+                    <a href="#about" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">About</a>
+                    <a href="#piles" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">Treatments</a>
+                    <a href="#dosha" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">Dosha Quiz</a>
+                    <a href="#booking" class="bg-rose-600 text-white px-6 py-2.5 rounded-full hover:bg-rose-700 transition-all transform hover:scale-105 text-sm font-medium shadow-lg shadow-rose-600/20">Book Appointment</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-earth-800">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-earth-50/95 backdrop-blur-lg border-t border-earth-200 mt-4">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-earth-700 py-2">Home</a>
+                <a href="#about" class="block text-earth-700 py-2">About</a>
+                <a href="#piles" class="block text-earth-700 py-2">Treatments</a>
+                <a href="#dosha" class="block text-earth-700 py-2">Dosha Quiz</a>
+                <a href="#booking" class="block bg-rose-600 text-white px-4 py-2 rounded-lg text-center mt-2">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-earth-900/50 via-earth-900/30 to-earth-50 z-10"></div>
+            <img src="WhatsApp Image 2026-04-30 at 11.13.16.jpeg" alt="Medical background" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-6 inline-block animate-float">
+                <svg class="w-16 h-16 text-rose-300 mx-auto opacity-90" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L9 7h6l-3-5zm0 20l3-5H9l3 5zm-7-7l5 3V9l-5 3zm14 0l-5 3V9l5 3z"/>
+                </svg>
+            </div>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 text-shadow leading-tight">
+                Shuki<br>
+                <span class="italic text-rose-300">Ayurveda</span>
+            </h1>
+            <p class="text-earth-100 text-lg md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed text-shadow">
+                Compassionate Ayurvedic care for women, led by <strong class="text-white">Dr. Pallavi</strong>
+            </p>
+            <p class="text-earth-200 text-base max-w-xl mx-auto mb-10 font-light leading-relaxed text-shadow">
+                Specialized in Piles, Fissure, Fistula & Cyst treatment for women through authentic Ayurvedic principles
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#booking" class="bg-rose-600 text-white px-8 py-4 rounded-full hover:bg-rose-700 transition-all transform hover:scale-105 text-sm font-semibold tracking-wide shadow-xl shadow-rose-900/30">
+                    Book Consultation
+                </a>
+                <a href="#piles" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all text-sm font-semibold tracking-wide">
+                    Our Treatments
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#about" class="text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <div class="bg-rose-800 text-white py-12 relative overflow-hidden">
+        <div class="absolute inset-0 mandala-bg opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+            <div class="scroll-reveal">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="2">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">Years Experience</div>
+            </div>
+            <div class="scroll-reveal" style="transition-delay: 100ms">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="10+">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">Women Treated</div>
+            </div>
+            <div class="scroll-reveal" style="transition-delay: 200ms">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="98">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">% Recovery Rate</div>
+            </div>
+            <div class="scroll-reveal" style="transition-delay: 300ms">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="100">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">% Natural</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-earth-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-rose-400/30"></div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-rose-400/30"></div>
+                    <img src="Dr Pallavi.jpeg" alt="Dr. Pallavi" class="rounded-2xl shadow-2xl w-full object-cover h-[600px]">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-md text-rose-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-serif text-lg text-earth-800">Dr. Pallavi</p>
+                                <p class="text-sm text-earth-500">B.A.M.S, MD (Ayurveda)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Meet Dr. Pallavi</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-6 leading-tight">
+                        Trusted Care for<br>
+                        <span class="italic text-earth-600">Women's Health</span>
+                    </h2>
+                    <p class="text-earth-600 leading-relaxed mb-6 text-lg">
+                        Dr. Pallavi is a dedicated Ayurvedic practitioner with over 2 years of specialized experience 
+                        in treating women's health conditions. Her gentle, patient-centered approach has helped thousands 
+                        of women find relief from chronic conditions through natural, side-effect-free treatments.
+                    </p>
+                    <p class="text-earth-600 leading-relaxed mb-8">
+                        At Shuki Ayurveda, we understand that women's health requires a unique perspective. 
+                        Dr. Pallavi combines classical Ayurvedic wisdom with deep empathy to create treatment 
+                        plans that address not just symptoms, but the root cause of your condition.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-rose-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-earth-800 mb-1">Women-Centric Care</h4>
+                                <p class="text-sm text-earth-500">Specialized understanding</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-rose-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-earth-800 mb-1">100% Natural</h4>
+                                <p class="text-sm text-earth-500">Herbal formulations</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-rose-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-earth-800 mb-1">Private & Safe</h4>
+                                <p class="text-sm text-earth-500">Confidential consultations</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-rose-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-earth-800 mb-1">Root Cause Treatment</h4>
+                                <p class="text-sm text-earth-500">Not just symptom relief</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Piles Treatment for Women Section -->
+    <section id="piles" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-rose-50 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-earth-100 rounded-full -ml-48 -mb-48 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-reveal">
+                <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Specialized Care</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-4">
+                    Anorectal & Cyst <span class="italic text-rose-600">Treatments for Women</span>
+                </h2>
+                <p class="text-earth-500 max-w-2xl mx-auto">Expert Ayurvedic care for piles, fissures, fistulas, and cysts — gentle, effective, and completely natural treatments tailored for women's physiology.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="lg:col-span-1 scroll-reveal">
+                    <div class="bg-rose-50 rounded-2xl p-8 border border-rose-100 h-full">
+                        <div class="w-14 h-14 bg-rose-100 rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-female text-2xl text-rose-600"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-earth-800 mb-4">Conditions We Treat</h3>
+                        <p class="text-earth-600 leading-relaxed mb-6">
+                            Dr. Pallavi specializes in treating a range of anorectal conditions affecting women. 
+                            Each condition requires a unique Ayurvedic approach for effective, lasting relief.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3 text-earth-700">
+                                <div class="w-8 h-8 bg-rose-200 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-circle text-[8px] text-rose-600"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold text-earth-800">Piles (Hemorrhoids)</span>
+                                    <p class="text-sm text-earth-500 mt-0.5">Swollen veins in rectum causing pain, bleeding, and discomfort</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 text-earth-700">
+                                <div class="w-8 h-8 bg-rose-200 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-circle text-[8px] text-rose-600"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold text-earth-800">Anal Fissure</span>
+                                    <p class="text-sm text-earth-500 mt-0.5">Painful tear in anal lining causing severe pain during bowel movements</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 text-earth-700">
+                                <div class="w-8 h-8 bg-rose-200 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-circle text-[8px] text-rose-600"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold text-earth-800">Fistula-in-Ano</span>
+                                    <p class="text-sm text-earth-500 mt-0.5">Abnormal tunnel between anal canal and skin causing drainage and infection</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 text-earth-700">
+                                <div class="w-8 h-8 bg-rose-200 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-circle text-[8px] text-rose-600"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold text-earth-800">Cysts</span>
+                                    <p class="text-sm text-earth-500 mt-0.5">Fluid-filled sacs requiring gentle Ayurvedic management and removal</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 scroll-reveal" style="transition-delay: 100ms">
+                    <div class="bg-white rounded-2xl border border-earth-200 overflow-hidden shadow-sm">
+                        <div class="flex flex-wrap border-b border-earth-200">
+                            <button onclick="switchTab('internal')" id="tab-internal" class="treatment-tab active flex-1 px-6 py-4 text-sm font-medium text-earth-700 hover:bg-rose-50 transition-colors border-b-2 border-transparent">
+                                Internal Medicines
+                            </button>
+                            <button onclick="switchTab('external')" id="tab-external" class="treatment-tab flex-1 px-6 py-4 text-sm font-medium text-earth-700 hover:bg-rose-50 transition-colors border-b-2 border-transparent">
+                                External Therapies
+                            </button>
+                            <button onclick="switchTab('para')" id="tab-para" class="treatment-tab flex-1 px-6 py-4 text-sm font-medium text-earth-700 hover:bg-rose-50 transition-colors border-b-2 border-transparent">
+                                Para-Surgical
+                            </button>
+                            <button onclick="switchTab('diet')" id="tab-diet" class="treatment-tab flex-1 px-6 py-4 text-sm font-medium text-earth-700 hover:bg-rose-50 transition-colors border-b-2 border-transparent">
+                                Diet & Lifestyle
+                            </button>
+                        </div>
+
+                        <div class="p-8">
+                            <div id="content-internal" class="treatment-content active">
+                                <h3 class="font-serif text-2xl text-earth-800 mb-4">Internal Herbal Medicines</h3>
+                                <p class="text-earth-600 mb-6 leading-relaxed">
+                                    Dr. Pallavi prescribes customized herbal formulations based on your specific condition 
+                                    (Piles, Fissure, Fistula, or Cysts) and body constitution. These work from within to 
+                                    improve digestion, reduce inflammation, promote healing, and prevent recurrence.
+                                </p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-leaf text-rose-500"></i> Arshoghni Vati
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Classical Ayurvedic tablets that reduce pile mass, control bleeding, and relieve pain.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-leaf text-rose-500"></i> Triphala Churna
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Natural bowel regulator that prevents constipation — the root cause of piles and fissures.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-leaf text-rose-500"></i> Abhayarishta
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Fermented herbal tonic that improves digestion and ensures smooth elimination.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-leaf text-rose-500"></i> Custom Kashayam
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Personalized decoctions prepared by Dr. Pallavi based on your Prakriti and condition.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-leaf text-rose-500"></i> Jatyadi Ghrita
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Medicated ghee for fissure healing and tissue regeneration.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-leaf text-rose-500"></i> Gandhaka Rasayana
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Purified sulfur preparation effective for fistula and cyst management.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-external" class="treatment-content">
+                                <h3 class="font-serif text-2xl text-earth-800 mb-4">External Ayurvedic Therapies</h3>
+                                <p class="text-earth-600 mb-6 leading-relaxed">
+                                    Localized treatments that provide immediate relief from pain, itching, and swelling. 
+                                    These applications are prepared fresh at our clinic using organic herbs.
+                                </p>
+                                <div class="space-y-4">
+                                    <div class="flex gap-4 bg-earth-50 rounded-xl p-5">
+                                        <div class="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-spa text-rose-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-earth-800 mb-1">Sitz Bath with Triphala</h4>
+                                            <p class="text-sm text-earth-600">Warm herbal sitz baths that reduce swelling, cleanse the area, and promote healing. Recommended daily during treatment for piles and fissures.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4 bg-earth-50 rounded-xl p-5">
+                                        <div class="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-hand-holding-medical text-rose-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-earth-800 mb-1">Herbal Ointment (Lepam)</h4>
+                                            <p class="text-sm text-earth-600">Anti-inflammatory herbal paste with neem, turmeric, and yashtimadhu applied externally to reduce pile mass, heal fissures, and soothe irritation.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4 bg-earth-50 rounded-xl p-5">
+                                        <div class="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-fire text-rose-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-earth-800 mb-1">Agni Karma (Thermal Cauterization)</h4>
+                                            <p class="text-sm text-earth-600">Controlled thermal therapy using specialized Ayurvedic instruments to cauterize and shrink pile masses effectively. Performed under local anesthesia by Dr. Pallavi with minimal discomfort.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4 bg-earth-50 rounded-xl p-5">
+                                        <div class="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-burn text-rose-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-earth-800 mb-1">Kshara Karma (Caustic Therapy)</h4>
+                                            <p class="text-sm text-earth-600">Application of medicated alkaline paste (Kshara) to pile masses causing controlled chemical cauterization. Highly effective for internal and external hemorrhoids with minimal recurrence.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-para" class="treatment-content">
+                                <h3 class="font-serif text-2xl text-earth-800 mb-4">Para-Surgical Procedures</h3>
+                                <p class="text-earth-600 mb-6 leading-relaxed">
+                                    Dr. Pallavi is specially trained in Ayurvedic para-surgical techniques that offer 
+                                    effective alternatives to conventional surgery. These procedures are minimally invasive, 
+                                    performed on an outpatient basis, and ensure faster recovery with minimal complications.
+                                </p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-procedures text-rose-500"></i> Kshara Sutra Therapy
+                                        </h4>
+                                        <p class="text-sm text-earth-600">A minimally invasive Ayurvedic para-surgical procedure using medicated thread for fistula-in-ano and advanced piles. The thread gradually cuts and heals the tract simultaneously, preventing recurrence.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-cut text-rose-500"></i> Cyst Removal
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Gentle Ayurvedic surgical removal of cysts with herbal wound care. Post-operative healing is accelerated with medicated dressings and internal medicines.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-fire-alt text-rose-500"></i> Agni Karma for Piles
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Thermal cauterization using heated Ayurvedic instruments to destroy pile tissue. Ideal for bleeding piles and small to medium hemorrhoids.</p>
+                                    </div>
+                                    <div class="bg-earth-50 rounded-xl p-5">
+                                        <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                            <i class="fas fa-vial text-rose-500"></i> Kshara Application
+                                        </h4>
+                                        <p class="text-sm text-earth-600">Direct application of medicated alkaline compounds to pile masses causing controlled tissue destruction and subsequent healing. Effective for non-bleeding piles.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-6 bg-rose-50 border border-rose-200 rounded-xl p-5">
+                                    <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-info-circle text-rose-500"></i> Why Choose Para-Surgical?
+                                    </h4>
+                                    <p class="text-sm text-earth-600">These procedures avoid the complications of modern surgery such as anal stenosis, incontinence, and recurrence. They are cost-effective, require no hospitalization, and allow you to resume normal activities within 24-48 hours.</p>
+                                </div>
+                            </div>
+
+                            <div id="content-diet" class="treatment-content">
+                                <h3 class="font-serif text-2xl text-earth-800 mb-4">Diet & Lifestyle Guidance</h3>
+                                <p class="text-earth-600 mb-6 leading-relaxed">
+                                    Diet is 70% of the cure. Dr. Pallavi provides detailed dietary charts and lifestyle 
+                                    modifications that prevent recurrence and promote long-term healing.
+                                </p>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 class="font-semibold text-rose-700 mb-3 flex items-center gap-2">
+                                            <i class="fas fa-check-circle"></i> Foods to Include
+                                        </h4>
+                                        <ul class="space-y-2 text-sm text-earth-700">
+                                            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 mt-1 text-xs"></i> Warm water throughout the day</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 mt-1 text-xs"></i> Ghee in moderate quantities</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 mt-1 text-xs"></i> Papaya and figs daily</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 mt-1 text-xs"></i> Buttermilk with roasted cumin</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 mt-1 text-xs"></i> Leafy greens and vegetables</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-plus text-green-500 mt-1 text-xs"></i> Soaked raisins and black dates</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-rose-700 mb-3 flex items-center gap-2">
+                                            <i class="fas fa-times-circle"></i> Foods to Avoid
+                                        </h4>
+                                        <ul class="space-y-2 text-sm text-earth-700">
+                                            <li class="flex items-start gap-2"><i class="fas fa-minus text-red-500 mt-1 text-xs"></i> Spicy and fried foods</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-minus text-red-500 mt-1 text-xs"></i> Processed and fast foods</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-minus text-red-500 mt-1 text-xs"></i> Excessive tea and coffee</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-minus text-red-500 mt-1 text-xs"></i> Maida (refined flour) products</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-minus text-red-500 mt-1 text-xs"></i> Alcohol and smoking</li>
+                                            <li class="flex items-start gap-2"><i class="fas fa-minus text-red-500 mt-1 text-xs"></i> Sitting for long periods</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mt-6 bg-rose-50 border border-rose-200 rounded-xl p-5">
+                                    <h4 class="font-semibold text-earth-800 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-lightbulb text-rose-500"></i> Daily Routine Tips
+                                    </h4>
+                                    <p class="text-sm text-earth-600">Wake before sunrise, drink warm water upon waking, practice gentle yoga (avoid heavy squats), take 10-minute walks after meals, and never suppress the urge to defecate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treatment Process -->
+            <div class="grid md:grid-cols-4 gap-6 scroll-reveal">
+                <div class="bg-white rounded-xl p-6 border border-earth-200 text-center">
+                    <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-rose-600 font-bold font-serif text-xl">1</div>
+                    <h4 class="font-semibold text-earth-800 mb-2">Consultation</h4>
+                    <p class="text-sm text-earth-600">Private discussion with Dr. Pallavi about your condition and history</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-earth-200 text-center">
+                    <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-rose-600 font-bold font-serif text-xl">2</div>
+                    <h4 class="font-semibold text-earth-800 mb-2">Diagnosis</h4>
+                    <p class="text-sm text-earth-600">Detailed examination to identify Piles, Fissure, Fistula, or Cysts</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-earth-200 text-center">
+                    <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-rose-600 font-bold font-serif text-xl">3</div>
+                    <h4 class="font-semibold text-earth-800 mb-2">Treatment</h4>
+                    <p class="text-sm text-earth-600">Customized medicines, therapies, or para-surgical procedures</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 border border-earth-200 text-center">
+                    <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-rose-600 font-bold font-serif text-xl">4</div>
+                    <h4 class="font-semibold text-earth-800 mb-2">Follow-up</h4>
+                    <p class="text-sm text-earth-600">Regular check-ins and lifestyle guidance for lasting results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dosha Quiz Section -->
+    <section id="dosha" class="py-24 bg-earth-100 mandala-bg relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-reveal">
+                <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Self Discovery</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-4">
+                    Discover Your <span class="italic text-earth-600">Dosha</span>
+                </h2>
+                <p class="text-earth-600 max-w-2xl mx-auto mb-8">Understanding your dominant dosha helps Dr. Pallavi personalize your piles treatment for faster, lasting results.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 scroll-reveal" id="dosha-quiz-container">
+                <div id="quiz-start" class="text-center py-8">
+                    <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-om text-3xl text-rose-600"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl text-earth-800 mb-4">What is Your Body Type?</h3>
+                    <p class="text-earth-600 mb-8 max-w-lg mx-auto">Answer 5 simple questions about your physical traits, digestion, and tendencies to discover whether Vata, Pitta, or Kapha dominates your constitution.</p>
+                    <button onclick="startQuiz()" class="bg-rose-600 text-white px-8 py-4 rounded-full hover:bg-rose-700 transition-all transform hover:scale-105 font-medium shadow-lg shadow-rose-600/20">
+                        Start Assessment
+                    </button>
+                </div>
+
+                <div id="quiz-questions" class="hidden">
+                    <div class="mb-8">
+                        <div class="flex justify-between text-sm text-earth-500 mb-2">
+                            <span>Question <span id="current-q">1</span> of 5</span>
+                            <span id="progress-percent">20%</span>
+                        </div>
+                        <div class="w-full bg-earth-200 rounded-full h-2">
+                            <div id="progress-bar" class="bg-rose-600 h-2 rounded-full transition-all duration-500" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="question-text" class="font-serif text-2xl md:text-3xl text-earth-800 mb-8 text-center"></h3>
+                    
+                    <div id="options-container" class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto"></div>
+                </div>
+
+                <div id="quiz-results" class="hidden text-center py-8">
+                    <div class="mb-6">
+                        <div class="w-24 h-24 bg-copper-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i id="result-icon" class="fas fa-leaf text-4xl text-copper-600"></i>
+                        </div>
+                        <h3 class="font-serif text-3xl text-earth-800 mb-2">Your Dominant Dosha is</h3>
+                        <h2 id="result-dosha" class="font-serif text-5xl md:text-6xl text-rose-700 mb-6"></h2>
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto bg-earth-50 rounded-2xl p-8 mb-8 text-left">
+                        <p id="result-description" class="text-earth-700 leading-relaxed mb-6 text-lg"></p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-earth-800 mb-3 flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-rose-600"></i> Characteristics
+                                </h4>
+                                <ul id="result-traits" class="space-y-2 text-earth-600"></ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-earth-800 mb-3 flex items-center gap-2">
+                                    <i class="fas fa-spa text-rose-600"></i> Piles Care Tips
+                                </h4>
+                                <ul id="result-treatments" class="space-y-2 text-earth-600"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="resetQuiz()" class="border-2 border-earth-300 text-earth-700 px-8 py-3 rounded-full hover:bg-earth-100 transition-all font-medium">
+                            Retake Quiz
+                        </button>
+                        <a href="#booking" onclick="scrollToBooking()" class="bg-rose-600 text-white px-8 py-3 rounded-full hover:bg-rose-700 transition-all font-medium shadow-lg shadow-rose-600/20">
+                            Book with Dr. Pallavi
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-earth-200 scroll-reveal">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-wind text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-earth-800 mb-2">Vata</h3>
+                    <p class="text-earth-600 text-sm mb-3">Air & Space</p>
+                    <p class="text-earth-500 text-sm leading-relaxed">Prone to dry, hard stools and constipation. Needs lubrication and warmth in treatment.</p>
+                </div>
+                <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-earth-200 scroll-reveal" style="transition-delay: 100ms">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-fire text-orange-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-earth-800 mb-2">Pitta</h3>
+                    <p class="text-earth-600 text-sm mb-3">Fire & Water</p>
+                    <p class="text-earth-500 text-sm leading-relaxed">Tends toward bleeding piles with inflammation. Needs cooling and soothing therapies.</p>
+                </div>
+                <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border border-earth-200 scroll-reveal" style="transition-delay: 200ms">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-mountain text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl text-earth-800 mb-2">Kapha</h3>
+                    <p class="text-earth-600 text-sm mb-3">Earth & Water</p>
+                    <p class="text-earth-500 text-sm leading-relaxed">Large, non-bleeding piles with mucus. Needs stimulation and lightening therapy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-5 gap-12">
+                <div class="lg:col-span-3 scroll-reveal">
+                    <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Appointments</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-6">
+                        Consult <span class="italic text-earth-600">Dr. Pallavi</span>
+                    </h2>
+                    <p class="text-earth-600 mb-8">Schedule your private consultation. All appointments are handled with complete confidentiality and care.</p>
+
+                    <form action="https://formspree.io/f/xojrqbrq" method="POST" class="space-y-6">
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-earth-700 mb-2">Full Name</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50" placeholder="Your name">
+                    </div>
+                    <div>
+                            <label class="block text-sm font-medium text-earth-700 mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50" placeholder="you@example.com">
+                    </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                            <label class="block text-sm font-medium text-earth-700 mb-2">Phone</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div>
+                            <label class="block text-sm font-medium text-earth-700 mb-2">Concern</label>
+                            <select name="concern" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50 appearance-none cursor-pointer">
+                                <option value="">Select your concern</option>
+                                <option value="piles">Piles / Hemorrhoids</option>
+                                <option value="fissure">Anal Fissure</option>
+                                <option value="fistula">Fistula-in-Ano</option>
+                                <option value="cysts">Cysts</option>
+                                <option value="women-health">General Women's Health</option>
+                                <option value="digestive">Digestive Issues</option>
+                                <option value="other">Other Concern</option>
+                            </select>
+                    </div>
+                </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-earth-700 mb-2">Preferred Date</label>
+                        <input type="date" name="date" required class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50 cursor-pointer">
+                    </div>
+
+                        <!-- TIME SLOT -->
+                        <input type="hidden" name="time" id="selected-time" required>
+
+                    <div>
+                        <label class="block text-sm font-medium text-earth-700 mb-2">Symptoms / Notes</label>
+                        <textarea name="message" rows="3" class="w-full px-4 py-3 rounded-xl border border-earth-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-200 outline-none transition-all bg-earth-50 resize-none" placeholder="Briefly describe your symptoms..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-rose-600 text-white py-4 rounded-xl hover:bg-rose-700 transition-all font-semibold text-lg">
+                        Request Appointment
+                    </button>
+
+                    
+                </form>
+            </div>
+
+                <div class="lg:col-span-2 scroll-reveal" style="transition-delay: 200ms">
+                    <div class="bg-earth-900 text-earth-100 rounded-3xl p-8 h-full relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-rose-800/30 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                        <div class="absolute bottom-0 left-0 w-48 h-48 bg-copper-600/20 rounded-full -ml-24 -mb-24 blur-2xl"></div>
+                        
+                        <div class="relative z-10">
+                            <h3 class="font-serif text-3xl text-white mb-2">Shuki Ayurveda</h3>
+                            <p class="text-rose-300 mb-8">Dr. Pallavi's Clinic</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-rose-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-white mb-1">Clinic Address</p>
+                                        <p class="text-earth-300 text-sm leading-relaxed">Opp of Ambabai Bhavani gudi, kusnoor road<br>Kalaburagi, Karnataka, 585105</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-clock text-rose-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-white mb-1">Consultation Hours</p>
+                                        <p class="text-earth-300 text-sm">Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: By Appointment</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone text-rose-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-white mb-1">Contact</p>
+                                        <p class="text-earth-300 text-sm">+91 6364772202<br>drpallavi@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-shield-alt text-rose-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-white mb-1">Privacy Assured</p>
+                                        <p class="text-earth-300 text-sm">All consultations are strictly confidential</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-10 pt-8 border-t border-white/10">
+                                <p class="text-sm text-earth-400 mb-4">Follow Dr. Pallavi</p>
+                                <div class="flex gap-3">
+                                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-earth-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Patient Stories</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-earth-900">
+                    Healing <span class="italic text-earth-600">Journeys</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-earth-100 scroll-reveal">
+                    <div class="flex text-rose-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-earth-600 mb-6 leading-relaxed italic">"I had bleeding piles after delivery. The treatment was gentle and effective, and I recovered within a few weeks without surgery."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-rose-200 rounded-full flex items-center justify-center font-serif text-rose-700 font-bold">A</div>
+                        <div>
+                            <p class="font-medium text-earth-800">Ananya Rampur</p>
+                            <p class="text-sm text-earth-500">Postpartum Piles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-earth-100 scroll-reveal" style="transition-delay: 100ms">
+                    <div class="flex text-rose-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-earth-600 mb-6 leading-relaxed italic">"I felt hesitant to talk about my condition at first, but the care was comfortable and supportive. The treatment and diet plan worked well, and I’m now pain-free."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-rose-200 rounded-full flex items-center justify-center font-serif text-rose-700 font-bold">R</div>
+                        <div>
+                            <p class="font-medium text-earth-800">Ritu Kattimani</p>
+                            <p class="text-sm text-earth-500">Chronic Hemorrhoids</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-earth-100 scroll-reveal" style="transition-delay: 200ms">
+                    <div class="flex text-rose-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-earth-600 mb-6 leading-relaxed italic">"I had piles for a long time and only got temporary relief earlier. This treatment worked well and gave me lasting relief. I would recommend it."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-rose-200 rounded-full flex items-center justify-center font-serif text-rose-700 font-bold">M</div>
+                        <div>
+                            <p class="font-medium text-earth-800">Meera Patil</p>
+                            <p class="text-sm text-earth-500">Recurrent Piles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth-900 text-earth-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg class="w-8 h-8 text-rose-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C10.5 4 8 6 8 9c0 2.5 1.5 4.5 4 5.5V22h2v-7.5c2.5-1 4-3 4-5.5 0-3-2.5-5-4-7z"/>
+                            <circle cx="12" cy="9" r="2" fill="white"/>
+                        </svg>
+                        <div>
+                            <h3 class="font-serif text-2xl text-white">Shuki</h3>
+                            <p class="text-xs text-earth-500 tracking-widest uppercase">Ayurveda</p>
+                            <p class="text-[10px] text-rose-400 tracking-wider uppercase font-medium mt-0.5">Ladies Piles Surgeon</p>
+                        </div>
+                    </div>
+                    <p class="text-earth-400 leading-relaxed max-w-md mb-6">
+                        Authentic Ayurvedic care for women, led by Dr. Pallavi. 
+                        Specialized in natural piles treatment and holistic women's wellness.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Quick Links</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#about" class="hover:text-rose-400 transition-colors">About Dr. Pallavi</a></li>
+                        <li><a href="#piles" class="hover:text-rose-400 transition-colors">Piles Treatment</a></li>
+                        <li><a href="#dosha" class="hover:text-rose-400 transition-colors">Dosha Quiz</a></li>
+                        <li><a href="#booking" class="hover:text-rose-400 transition-colors">Book Appointment</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Treatments</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#piles" class="hover:text-rose-400 transition-colors">Piles / Hemorrhoids</a></li>
+                        <li><a href="#piles" class="hover:text-rose-400 transition-colors">Fissure Treatment</a></li>
+                        <li><a href="#piles" class="hover:text-rose-400 transition-colors">Fistula Care</a></li>
+                        <li><a href="#booking" class="hover:text-rose-400 transition-colors">Women's Health</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-earth-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-earth-500"> 2026 Shuki Ayurveda. Dr. Pallavi's Clinic. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-earth-500">
+                    <a href="#" class="hover:text-earth-300 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-earth-300 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'shadow-sm');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('glass-nav', 'shadow-sm');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Scroll reveal
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Counter animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.counter').forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const increment = target / 125;
+                        let current = 0;
+                        const update = () => {
+                            current += increment;
+                            counter.textContent = current < target ? Math.floor(current) + (target === 100 ? '%' : '+') : target + (target === 100 ? '%' : '+');
+                            if (current < target) requestAnimationFrame(update);
+                        };
+                        update();
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        });
+        document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el.parentElement.parentElement));
+
+        // Piles Treatment Tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.treatment-tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.classList.remove('bg-rose-600', 'text-white', 'border-rose-600');
+                tab.classList.add('text-earth-700');
+            });
+            document.querySelectorAll('.treatment-content').forEach(content => content.classList.remove('active'));
+            
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.getElementById('content-' + tabName).classList.add('active');
+        }
+
+        // Dosha Quiz
+        const quizData = [
+            {
+                question: "What is your body frame like?",
+                options: [
+                    { text: "Thin, light, and slender", dosha: "vata" },
+                    { text: "Medium, muscular build", dosha: "pitta" },
+                    { text: "Solid, larger frame", dosha: "kapha" }
+                ]
+            },
+            {
+                question: "How is your digestion and stool?",
+                options: [
+                    { text: "Irregular, constipated often", dosha: "vata" },
+                    { text: "Strong, sometimes loose with heat", dosha: "pitta" },
+                    { text: "Slow, heavy, regular", dosha: "kapha" }
+                ]
+            },
+            {
+                question: "What best describes your temperament?",
+                options: [
+                    { text: "Creative, anxious, restless", dosha: "vata" },
+                    { text: "Focused, irritable, ambitious", dosha: "pitta" },
+                    { text: "Calm, patient, lethargic", dosha: "kapha" }
+                ]
+            },
+            {
+                question: "How do your piles manifest?",
+                options: [
+                    { text: "Dry, painful, with constipation", dosha: "vata" },
+                    { text: "Bleeding, inflamed, burning", dosha: "pitta" },
+                    { text: "Large, non-bleeding, mucus", dosha: "kapha" }
+                ]
+            },
+            {
+                question: "What is your appetite like?",
+                options: [
+                    { text: "Variable, forget to eat", dosha: "vata" },
+                    { text: "Strong, must eat on time", dosha: "pitta" },
+                    { text: "Steady, can skip meals", dosha: "kapha" }
+                ]
+            }
+        ];
+
+        const doshaResults = {
+            vata: {
+                name: "Vata",
+                icon: "fa-wind",
+                color: "text-blue-600",
+                bg: "bg-blue-100",
+                description: "Vata dominance means Air and Space elements are strong in you. You tend toward dryness, constipation, and anxiety — all of which aggravate piles. Your treatment focuses on lubrication and grounding.",
+                traits: ["Dry skin and stools", "Variable digestion", "Anxious temperament", "Light sleeper", "Quick movements"],
+                treatments: ["Warm oil enemas (Basti)", "Ghee-rich diet", "Ashwagandha for stress", "Regular oil massage", "Avoid cold, raw foods"]
+            },
+            pitta: {
+                name: "Pitta",
+                icon: "fa-fire",
+                color: "text-orange-600",
+                bg: "bg-orange-100",
+                description: "Pitta dominance indicates strong Fire element. You experience burning, bleeding, and inflammation in piles. Your treatment focuses on cooling and soothing therapies.",
+                traits: ["Warm body temperature", "Strong appetite", "Sharp intellect", "Prone to anger", "Oily skin"],
+                treatments: ["Cooling herbs (Shatavari)", "Coconut water regularly", "Avoid spicy, sour foods", "Sitz bath with neem", "Shirodhara for calm"]
+            },
+            kapha: {
+                name: "Kapha",
+                icon: "fa-mountain",
+                color: "text-green-600",
+                bg: "bg-green-100",
+                description: "Kapha dominance shows Earth and Water strength. Your piles are typically large, non-bleeding with mucus discharge. Treatment focuses on stimulation and lightening.",
+                traits: ["Heavy, solid build", "Steady digestion", "Calm nature", "Deep sleeper", "Tendency to gain weight"],
+                treatments: ["Triphala for cleansing", "Regular exercise", "Warm, light foods", "Herbal steam therapy", "Avoid dairy and sweets"]
+            }
+        };
+
+        let currentQuestion = 0;
+        let scores = { vata: 0, pitta: 0, kapha: 0 };
+
+        function startQuiz() {
+            document.getElementById('quiz-start').classList.add('hidden');
+            document.getElementById('quiz-questions').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('current-q').textContent = currentQuestion + 1;
+            document.getElementById('progress-percent').textContent = Math.round((currentQuestion + 1) / quizData.length * 100) + '%';
+            document.getElementById('progress-bar').style.width = ((currentQuestion + 1) / quizData.length * 100) + '%';
+            document.getElementById('question-text').textContent = q.question;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            container.style.opacity = '1';
+            
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'p-6 rounded-xl border-2 border-earth-200 hover:border-rose-500 hover:bg-rose-50 transition-all text-left group';
+                btn.innerHTML = `
+                    <div class="w-8 h-8 rounded-full border-2 border-earth-300 group-hover:border-rose-500 flex items-center justify-center mb-3 group-hover:bg-rose-500 group-hover:text-white transition-all text-earth-500 font-medium text-sm">
+                        ${String.fromCharCode(65 + idx)}
+                    </div>
+                    <p class="text-earth-700 font-medium">${opt.text}</p>
+                `;
+                btn.onclick = () => selectOption(opt.dosha);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(dosha) {
+            scores[dosha]++;
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                document.getElementById('options-container').style.opacity = '0';
+                setTimeout(() => showQuestion(), 300);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-questions').classList.add('hidden');
+            document.getElementById('quiz-results').classList.remove('hidden');
+            
+            const dominant = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const result = doshaResults[dominant];
+            
+            document.getElementById('result-dosha').textContent = result.name;
+            document.getElementById('result-dosha').className = `font-serif text-5xl md:text-6xl mb-6 ${result.color}`;
+            document.getElementById('result-icon').className = `fas ${result.icon} text-4xl ${result.color}`;
+            document.getElementById('result-icon').parentElement.className = `w-24 h-24 ${result.bg} rounded-full flex items-center justify-center mx-auto mb-4`;
+            document.getElementById('result-description').textContent = result.description;
+            
+            document.getElementById('result-traits').innerHTML = result.traits.map(t => 
+                `<li class="flex items-center gap-2"><i class="fas fa-circle text-[6px] text-rose-500"></i>${t}</li>`
+            ).join('');
+            
+            document.getElementById('result-treatments').innerHTML = result.treatments.map(t => 
+                `<li class="flex items-center gap-2"><i class="fas fa-circle text-[6px] text-copper-500"></i>${t}</li>`
+            ).join('');
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            scores = { vata: 0, pitta: 0, kapha: 0 };
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-start').classList.remove('hidden');
+        }
+
+        function scrollToBooking() {
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Booking
+        function selectService(serviceId) {
+            document.getElementById('service-select').value = serviceId;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            if (!slot.classList.contains('disabled')) {
+                slot.addEventListener('click', function() {
+                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                    document.getElementById('selected-time').value = this.dataset.time;
+                    document.getElementById('time-error').classList.add('hidden');
+                });
+            }
+        });
+
+        const dateInput = document.getElementById('booking-date');
+        dateInput.min = new Date().toISOString().split('T')[0];
+
+        function handleBooking(e) {
+            e.preventDefault();
+            if (!document.getElementById('selected-time').value) {
+                document.getElementById('time-error').classList.remove('hidden');
+                return;
+            }
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.classList.add('opacity-75');
+            
+            setTimeout(() => {
+                document.getElementById('booking-form').classList.add('hidden');
+                document.getElementById('booking-success').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('booking-form').reset();
+                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    document.getElementById('selected-time').value = '';
+                    document.getElementById('booking-form').classList.remove('hidden');
+                    document.getElementById('booking-success').classList.add('hidden');
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>Request Appointment</span><i class="fas fa-arrow-right"></i>';
+                    btn.classList.remove('opacity-75');
+                }, 5000);
+            }, 1500);
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
