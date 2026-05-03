@@ -376,6 +376,348 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
+                                             300: '#9ebf9e',
+                            400: '#7aa37a',
+                            500: '#5e875e',
+                            600: '#496d49',
+                            700: '#3a573a',
+                            800: '#2f452f',
+                            900: '#263626',
+                        },
+                        copper: {
+                            400: '#d4a574',
+                            500: '#c8956c',
+                            600: '#b8835a',
+                        },
+                        rose: {
+                            50: '#fdf2f2',
+                            100: '#fce7e7',
+                            200: '#f9d5d5',
+                            300: '#f4b5b5',
+                            400: '#ec8e8e',
+                            500: '#e06c6c',
+                            600: '#cd5252',
+                            700: '#ab4040',
+                            800: '#8e3838',
+                            900: '#763434',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(250, 248, 245, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .mandala-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23967d5e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+        .service-card:hover .service-overlay {
+            opacity: 1;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .time-slot {
+            transition: all 0.2s;
+        }
+        .time-slot:hover:not(.disabled) {
+            background-color: #5e875e;
+            color: white;
+            transform: scale(1.05);
+        }
+        .time-slot.selected {
+            background-color: #496d49;
+            color: white;
+        }
+        .time-slot.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .treatment-tab {
+            transition: all 0.3s ease;
+        }
+        .treatment-tab.active {
+            background-color: #cd5252;
+            color: white;
+            border-color: #cd5252;
+        }
+        .treatment-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .treatment-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf8f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c9b89f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b09a7a;
+        }
+        /* Hero background images with overlay for text readability */
+        .hero-bg-left {
+            background-image: url('/mnt/agents/upload/WhatsApp Image 2026-05-02 at 19.54.17.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-bg-center {
+            background-image: url('/mnt/agents/upload/image.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-bg-right {
+            background-image: url('/mnt/agents/upload/WhatsApp Image 2026-05-02 at 19.57.44.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="font-sans text-earth-800 bg-earth-50 antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-10 h-10 text-rose-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C10.5 4 8 6 8 9c0 2.5 1.5 4.5 4 5.5V22h2v-7.5c2.5-1 4-3 4-5.5 0-3-2.5-5-4-7z"/>
+                        <circle cx="12" cy="9" r="2" fill="white"/>
+                    </svg>
+                    <div>
+                        <h1 class="font-serif text-2xl font-semibold text-earth-900 tracking-wide">Shuki</h1>
+                        <p class="text-xs text-earth-600 tracking-widest uppercase">Ayurveda</p>
+                        <p class="text-[10px] text-rose-600 tracking-wider uppercase font-medium mt-0.5">Ladies Piles Surgeon</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">Home</a>
+                    <a href="#about" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">About</a>
+                    <a href="#piles" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">Treatments</a>
+                    <a href="#dosha" class="text-earth-700 hover:text-rose-600 transition-colors text-sm font-medium tracking-wide">Dosha Quiz</a>
+                    <a href="#booking" class="bg-rose-600 text-white px-6 py-2.5 rounded-full hover:bg-rose-700 transition-all transform hover:scale-105 text-sm font-medium shadow-lg shadow-rose-600/20">Book Appointment</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-earth-800">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-earth-50/95 backdrop-blur-lg border-t border-earth-200 mt-4">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-earth-700 py-2">Home</a>
+                <a href="#about" class="block text-earth-700 py-2">About</a>
+                <a href="#piles" class="block text-earth-700 py-2">Treatments</a>
+                <a href="#dosha" class="block text-earth-700 py-2">Dosha Quiz</a>
+                <a href="#booking" class="block bg-rose-600 text-white px-4 py-2 rounded-lg text-center mt-2">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Triptych Background Images -->
+        <div class="absolute inset-0 z-0 flex">
+            <!-- Left Side Image -->
+            <div class="w-[25%] h-full relative overflow-hidden hidden md:block hero-bg-left">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-earth-900/40 to-earth-900/90"></div>
+            </div>
+            
+            <!-- Center Image (Main) -->
+            <div class="w-full md:w-[50%] h-full relative overflow-hidden hero-bg-center">
+            </div>
+            
+            <!-- Right Side Image -->
+            <div class="w-[25%] h-full relative overflow-hidden hidden md:block hero-bg-right">
+                <div class="absolute inset-0 bg-gradient-to-l from-transparent via-earth-900/40 to-earth-900/90"></div>
+            </div>
+            
+            <!-- Overall Gradient Overlay for Text Readability -->
+            <div class="absolute inset-0 bg-gradient-to-b from-earth-900/70 via-earth-900/50 to-earth-900/80 z-10"></div>
+        </div>
+        
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-6 inline-block animate-float">
+                <svg class="w-16 h-16 text-rose-300 mx-auto opacity-90" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L9 7h6l-3-5zm0 20l3-5H9l3 5zm-7-7l5 3V9l-5 3zm14 0l-5 3V9l5 3z"/>
+                </svg>
+            </div>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 text-shadow leading-tight">
+                Shuki<br>
+                <span class="italic text-rose-300">Ayurveda</span>
+            </h1>
+            <p class="text-earth-100 text-lg md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed text-shadow">
+                Compassionate Ayurvedic care for women, led by <strong class="text-white">Dr. Pallavi</strong>
+            </p>
+            <p class="text-earth-200 text-base max-w-xl mx-auto mb-10 font-light leading-relaxed text-shadow">
+                Specialized in Piles, Fissure, Fistula & Cyst treatment for women through authentic Ayurvedic principles
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#booking" class="bg-rose-600 text-white px-8 py-4 rounded-full hover:bg-rose-700 transition-all transform hover:scale-105 text-sm font-semibold tracking-wide shadow-xl shadow-rose-900/30">
+                    Book Consultation
+                </a>
+                <a href="#piles" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all text-sm font-semibold tracking-wide">
+                    Our Treatments
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#about" class="text-white/70 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <div class="bg-rose-800 text-white py-12 relative overflow-hidden">
+        <div class="absolute inset-0 mandala-bg opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+            <div class="scroll-reveal">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="2">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">Years Experience</div>
+            </div>
+            <div class="scroll-reveal" style="transition-delay: 100ms">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="10">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">Women Treated</div>
+            </div>
+            <div class="scroll-reveal" style="transition-delay: 200ms">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="98">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">% Recovery Rate</div>
+            </div>
+            <div class="scroll-reveal" style="transition-delay: 300ms">
+                <div class="font-serif text-4xl md:text-5xl font-light text-rose-200 mb-2 counter" data-target="100">0</div>
+                <div class="text-rose-100 text-sm tracking-widest uppercase">% Natural</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-earth-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Icon instead of Photo -->
+                <div class="scroll-reveal relative pb-12 md:pb-0">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-rose-400/30"></div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-rose-400/30"></div>
+                    
+                    <!-- Female Doctor Icon Container -->
+                    <div class="rounded-2xl shadow-2xl w-full h-[600px] bg-gradient-to-br from-rose-50 via-earth-50 to-rose-100 flex items-center justify-center relative mandala-bg">
+                        <div class="absolute inset-0 mandala-bg opacity-40"></div>
+                        <div class="absolute top-10 left-10 w-32 h-32 bg-rose-200/30 rounded-full blur-2xl"></div>
+                        <div class="absolute bottom-10 right-10 w-40 h-40 bg-copper-400/20 rounded-full blur-3xl"></div>
+                        
+                        <div class="relative z-10 text-center px-8">
+                            <div class="w-44 h-44 bg-white rounded-full shadow-2xl flex items-center justify-center mx-auto mb-8 border-4 border-rose-100">
+                                <i class="fas fa-user-md text-8xl text-rose-500"></i>
+                            </div>
+                            <div class="bg-white/90 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-xl inline-block border border-rose-100">
+                                <p class="font-serif text-2xl text-earth-800 mb-1">Dr. Pallavi</p>
+                                <p class="text-sm text-rose-600 font-medium tracking-wide uppercase">B.A.M.S, MS (Ayu)</p>
+                                <div class="mt-3 flex items-center justify-center gap-2 text-xs text-earth-500">
+                                    <i class="fas fa-certificate text-rose-400"></i>
+                                    <span>Ayurvedic Surgeon</span>
+                                    <span class="mx-1">|</span>
+                                    <i class="fas fa-venus text-rose-400"></i>
+                                    <span>Women's Specialist</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="relative md:absolute md:-bottom-6 md:-right-6 bg-white p-6 rounded-xl shadow-xl max-w-xs border border-rose-100 mt-6 md:mt-0 z-20">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-md text-rose-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-serif text-lg text-earth-800">Dr. Pallavi</p>
+                                <p class="text-sm text-earth-500">B.A.M.S, MS (Ayu)</p>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-2 border-t border-earth-100">
+                            <p class="text-xs text-rose-600 font-medium uppercase tracking-wider">Ladies Piles Surgeon</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <p class="text-rose-600 font-medium tracking-widest uppercase text-sm mb-4">Meet Dr. Pallavi</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-earth-900 mb-6 leading-tight">
+                        Trusted Care for<br>
+                        <span class="italic text-earth-600">Women's Health</span>
+                    </h2>
+                    <p class="text-earth-600 leading-relaxed mb-6 text-lg">
+                        Dr. Pallavi is a dedicated Ayurvedic practitioner with over 2 years of specialized experience 
+                        in treating women's health conditions. Her gentle, patient-centered approach has helped thousands 
+                        of women find relief from chronic conditions through natural, side-effect-free treatments.
+                    </p>
+                    <p class="text-earth-600 leading-relaxed mb-8">
+                        At Shuki Ayurveda, we understand that women's health requires a unique perspective. 
+                        Dr. Pallavi combines classical Ayurvedic wisdom with deep empathy to create treatment 
+                        plans that address not just symptoms, but the root cause of your condition.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-rose-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-earth-800 mb-1">Women-Centric Care</h4>
+                                <p class="text-sm text-earth-500">Specialized understanding</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
                             <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                                 <i class="fas fa-check text-rose-600 text-sm"></i>
                             </div>
